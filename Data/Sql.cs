@@ -7,7 +7,7 @@ namespace Network__Dag_4_BlazorApp.Data
 {
     public class Sql
     {
-        public static string connectionString = "Data Source=LAPTOP-U1QPB21T;Initial Catalog=Blazor_LoginDB;User ID=sa;Password=Passw0rd;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public static string connectionString = "Data Source=LAPTOP-U1QPB21T;Initial Database=Blazor_LoginDB;User ID=sa;Password=Passw0rd;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public static List<User> Read()
         {
             List<User> User_list = new List<User>();
