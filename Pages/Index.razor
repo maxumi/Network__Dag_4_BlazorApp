@@ -1,0 +1,73 @@
+﻿@using Network__Dag_4_BlazorApp.Data
+@page "/"
+<PageTitle>Index</PageTitle>
+
+<h1>Login</h1>
+
+<div>
+    <label>Write your name</label>
+    <input @bind="user.User_Name" />
+</div>
+<div>
+    <label>Wríte your Password</label>
+    <input @bind="user.User_Password" type="password" />
+</div>
+<div>
+    <button @onclick="Login">Login</button>
+</div>
+
+
+@if (user_list.Count > 0)
+{
+      <table style = "margin-top: 25px;">
+        <thead>
+            <tr style="border: 2px solid black;">
+                <th style="border: 2px solid black;">User ID</th>
+                <th style="border: 2px solid black;">User Name</th>
+                <th style="border: 2px solid black;">User Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in user_list)
+            {
+                <tr style="border: 2px solid black;">
+                    <td style="border: 2px solid black;">@item.User_ID</td>
+                    <td style="border: 2px solid black;">@item.User_Name</td>
+                    <td style="border: 2px solid black;">@item.User_Password</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (button_clicked && user_exists)
+{
+    <div>Status: Logged in @user.User_Name</div>
+
+}
+else if (button_clicked && !user_exists)
+{
+    
+    <div>
+         <p>Status: Not logged in</p>
+    </div>
+}
+
+@code{
+    User user = new();
+    List<User> user_list = new();
+    bool user_exists = false;
+    bool button_clicked = false;
+
+    void Login()
+    {
+        button_clicked = true;
+        user_exists = Sql.CheckLogin(user);
+
+
+
+        
+
+        user_list = Sql.Read();
+    }
+}
